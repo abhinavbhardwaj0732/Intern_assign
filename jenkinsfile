@@ -1,1 +1,5 @@
-
+node {
+    stage('clone to Github repo') {
+        git branch: 'main' , url:
+    }
+}
