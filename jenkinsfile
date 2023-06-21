@@ -6,6 +6,7 @@ def dockerImage =""
 stage('clone to Github repo') {
      git branch: 'main' , url:'https://github.com/abhinavbhardwaj0732/Intern_assign.git'
     }
-stage{'Building Image'}
+stage('Building Image'){
 dockerImage = docker.build(Imagename)
+}
 }
