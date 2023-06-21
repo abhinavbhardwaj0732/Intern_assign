@@ -1,13 +1,11 @@
-FROM node:latest
+FROM node:16.20.0-alpine3.18
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package.json .
 
 RUN npm install
 
 COPY . .
 
-EXPOSE 8085
-
-CMD ["node","server.js"]
+CMD ["npm","server.js"]
