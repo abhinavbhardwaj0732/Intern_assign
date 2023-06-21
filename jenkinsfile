@@ -11,7 +11,7 @@ dockerImage = docker.build(Imagename)
 }
  stage('Uploading to Nexus') {
 withDockerRegistry(registryCredentials: registrycredentials, url: registry){
-       dockerImage.push('my-docker-assign')
+       
 }
 
 }
