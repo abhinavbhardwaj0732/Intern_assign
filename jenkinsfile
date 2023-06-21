@@ -1,6 +1,6 @@
 node {
 def Imagename = "node"
-def registrycredentials = "nexus03"
+def registrycredentials = "admin"
 def registry ="http://localhost:8083/repository/my-docker-assign/"
 def dockerImage =""
 stage('clone to Github repo') {
