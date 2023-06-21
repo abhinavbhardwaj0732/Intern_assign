@@ -9,4 +9,7 @@ stage('clone to Github repo') {
 stage('Building Image'){
 dockerImage = docker.build(Imagename)
 }
+ stage('Uploading to Nexus') {
+      docker.withRegistry( 'http://'+registry, registryCredentials ) {
+             dockerImage.push('latest')
 }
