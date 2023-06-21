@@ -1,5 +1,5 @@
 node {
     stage('clone to Github repo') {
-        git branch: 'main' , url:
+        git branch: 'main' , url:'https://github.com/abhinavbhardwaj0732/Intern_assign.git'
     }
 }
