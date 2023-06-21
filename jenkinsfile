@@ -13,3 +13,5 @@ dockerImage = docker.build(Imagename)
       docker.withRegistry( 'http://'+registry, registryCredentials ) {
              dockerImage.push('latest')
 }
+}
+}
