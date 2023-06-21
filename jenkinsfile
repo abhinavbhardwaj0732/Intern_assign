@@ -1,5 +1,5 @@
 node {
-def Imagename = "nodeapp"
+def Imagename = "docker_web_app"
 def registrycredentials = "nexus03"
 def registry ="http://localhost:8083/repository/my-docker-assign/"
 def dockerImage =""
