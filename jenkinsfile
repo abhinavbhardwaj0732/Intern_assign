@@ -1,5 +1,11 @@
 node {
-    stage('clone to Github repo') {
-        git branch: 'main' , url:'https://github.com/abhinavbhardwaj0732/Intern_assign.git'
+def Imagename = "Nodeapp"
+def registrycredentials = "nexus03"
+def registry =""
+def dockerImage =""
+stage('clone to Github repo') {
+     git branch: 'main' , url:'https://github.com/abhinavbhardwaj0732/Intern_assign.git'
     }
+stage{'Building Image'}
+dockerImage = docker.build(Imagename)
 }
