@@ -11,8 +11,8 @@ dockerImage = docker.build(imagename)
 }
  stage('Uploading to Nexus') {
      sh "docker login -u admin -p admin 127.0.0.1:8082"
- sh "docker tag ${imageName}:latest 127.0.0.1:8082/${imageName}:latest"
-        sh "docker push 127.0.0.1:8082/${imageName}:latest"
+ sh "docker tag ${imagename}:latest 127.0.0.1:8082/${imagename}:latest"
+        sh "docker push 127.0.0.1:8082/${imagename}:latest"
        
 }
 
