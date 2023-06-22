@@ -1,28 +1,27 @@
 node {
-def imagename = "node"
-def registrycredentials = "admin"
-def registry ="172.31.161.242:8082"
-def dockerImage =""
-stage('clone to Github repo') {
-     git branch: 'main' , url:'https://github.com/abhinavbhardwaj0732/Intern_assign.git'
+    def imagename = "node"
+    def registrycredentials = "admin"
+    def registry = "172.31.161.242:8082"
+    def dockerImage = ""
+
+    stage('clone to Github repo') {
+        git branch: 'main', url: 'https://github.com/abhinavbhardwaj0732/Intern_assign.git'
     }
-stage('Building Image'){
-dockerImage = docker.build(imagename)
-}
- stage('Uploading to Nexus') {
-     sh "docker login -u admin -p admin 127.0.0.1:8082"
- sh "docker tag ${imagename}:latest 127.0.0.1:8082/${imagename}:latest"
+
+    stage('Building Image') {
+        dockerImage = docker.build(imagename)
+    }
+
+    stage('Uploading to Nexus') {
+        sh "docker login -u admin -p admin 127.0.0.1:8082"
+        sh "docker tag ${imagename}:latest 127.0.0.1:8082/${imagename}:latest"
         sh "docker push 127.0.0.1:8082/${imagename}:latest"
-       
-}
-stage('Deploy to kubernetes'){
-     withKubeConfig([credentialsId:'finalconfig']) {
-         sh "docker login -u admin -p admin 127.0.0.1:8082"
-         sh 'kubectl apply -f secret.yaml'
-         sh 'kubectl apply -f deployment.yaml'
-}
+    }
 
-}
-
-
+    stage('Deploy to Kubernetes') {
+        withCredentials([kubeconfigFile(credentialsId: 'finalconfig', variable: 'KUBECONFIG')]) {
+            sh 'kubectl apply -f secret.yaml'
+            sh 'kubectl apply -f deployment.yaml'
+        }
+    }
 }
