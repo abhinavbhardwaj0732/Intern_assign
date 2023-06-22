@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+        - name: my-app-container
+          image: 127.0.1.1:8123/vnewapp:latest
+          ports:
+            - containerPort: 8088
+      imagePullSecrets:
+        - name: my-sec
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-service
+spec:
+  selector:
+    app: my-app
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 5000
+    targetPort: 80
+    nodePort: 31110
+        
