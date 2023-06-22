@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app-deployment
+  name: m-app-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: my-app
+      app: m-app
   template:
     metadata:
       labels:
-        app: my-app
+        app: m-app
     spec:
       containers:
-        - name: my-app-container
+        - name: m-app-container
           image: 127.0.0.1:8082/node:latest
           ports:
             - containerPort: 8088
       imagePullSecrets:
-        - name: my-sec
+        - name: m-sec
 
 
 ---
@@ -26,14 +26,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-app-service
+  name: m-app-service
 spec:
   selector:
-    app: my-app
+    app: m-app
   type: NodePort
   ports:
   - protocol: TCP
     port: 5000
     targetPort: 80
-    nodePort: 31110
+    nodePort: 31111
         
