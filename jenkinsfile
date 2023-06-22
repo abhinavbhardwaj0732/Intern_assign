@@ -1,5 +1,5 @@
 node {
-def Imagename = "node"
+def imagename = "node"
 def registrycredentials = "admin"
 def registry ="172.31.161.242:8082"
 def dockerImage =""
