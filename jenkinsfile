@@ -1,7 +1,7 @@
 node {
 def Imagename = "node"
 def registrycredentials = "admin"
-def registry ="http://localhost:8083/repository/my-docker-assign/"
+def registry ="172.31.161.242:8082"
 def dockerImage =""
 stage('clone to Github repo') {
      git branch: 'main' , url:'https://github.com/abhinavbhardwaj0732/Intern_assign.git'
@@ -10,9 +10,9 @@ stage('Building Image'){
 dockerImage = docker.build(Imagename)
 }
  stage('Uploading to Nexus') {
-     sh "docker login -u admin -p admin123 172.31.161.242:8085"
-        sh "docker tag ${imageName}:latest 172.31.161.242:8085/${imageName}:latest"
-        sh "docker push 172.31.161.242:8085/${imageName}:latest"
+     sh "docker login -u admin -p admin123 172.31.161.242:8082"
+        sh "docker tag ${imageName}:latest 172.31.161.242:8082/${imageName}:latest"
+        sh "docker push 172.31.161.242:8082/${imageName}:latest"
 
        
 }
