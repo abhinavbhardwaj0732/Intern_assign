@@ -7,7 +7,7 @@ stage('clone to Github repo') {
      git branch: 'main' , url:'https://github.com/abhinavbhardwaj0732/Intern_assign.git'
     }
 stage('Building Image'){
-dockerImage = docker.build(Imagename)
+dockerImage = docker.build(imagename)
 }
  stage('Uploading to Nexus') {
      sh "docker login -u admin -p admin 127.0.0.1:8082"
