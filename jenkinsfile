@@ -10,7 +10,10 @@ stage('Building Image'){
 dockerImage = docker.build(Imagename)
 }
  stage('Uploading to Nexus') {
-withDockerRegistry(registryCredentials: registrycredentials, url: registry){
+     sh "docker login -u admin -p admin123 172.31.161.242:8085"
+        sh "docker tag ${imageName}:latest 172.31.161.242:8085/${imageName}:latest"
+        sh "docker push 172.31.161.242:8085/${imageName}:latest"
+
        
 }
 
