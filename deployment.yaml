@@ -17,8 +17,8 @@ spec:
           image: 127.0.0.1:8082/node:latest
           ports:
             - containerPort: 8088
-      #imagePullSecrets:
-        #- name: my-sec
+      imagePullSecrets:
+        - name: my-sec
 
 
 ---
