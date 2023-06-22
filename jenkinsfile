@@ -15,6 +15,14 @@ dockerImage = docker.build(imagename)
         sh "docker push 127.0.0.1:8082/${imagename}:latest"
        
 }
+stage('Deploy to kubernetes'){
+     withkubeconfig([credentialsId: finalconfig']){
+         sh "docker login -u admin -p admin 127.0.0.1:8082"
+         sh 'kubecty apply -f secret.yaml'
+         sh 'kubectl apply -f deployment.yaml'
+}
+
+}
 
 
 }
