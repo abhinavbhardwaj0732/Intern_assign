@@ -1,7 +1,7 @@
 node {
     def imagename = "node"
     def registrycredentials = "admin"
-    def registry = "127.0.0.1:8082:8082"
+    def registry = "127.0.0.1:8082"
     def dockerImage = ""
 
     stage('clone to Github repo') {
