@@ -13,14 +13,14 @@ node {
     }
 
     stage('Uploading to Nexus') {
-        sh "docker login -u admin -p admin 127.0.0.1:8082"
-        sh "docker tag ${imagename}:latest 127.0.0.1:8082/${imagename}:latest"
+        sh "docker login -u admin -p admin 172.31.161.242:8082"
+        sh "docker tag ${imagename}:latest 172.31.161.242:8082/${imagename}:latest"
         sh "docker push 127.0.0.1:8082/${imagename}:latest"
     }
 
     stage('Deploy to Kubernetes') {
         withKubeConfig([credentialsId: 'finalconfig']) {
-            sh 'kubectl create secret docker-registry mysecret --docker-server=127.0.0.1:8082 --docker-username=admin --docker-password=admin'
+            sh 'kubectl create secret docker-registry mysecret --docker-server=172.31.161.242:8082 --docker-username=admin --docker-password=admin'
             
             sh 'kubectl apply -f deployment.yaml'
         }
