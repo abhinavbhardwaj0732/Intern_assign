@@ -19,7 +19,7 @@ node {
     }
 
     stage('Deploy to Kubernetes') {
-        withKubeConfig([credentialsId: 'lasttry']) {
+        withKubeConfig([credentialsId: 'finalconfig']) {
             sh 'kubectl create secret docker-registry mysecret --docker-server=127.0.0.1:8082 --docker-username=admin --docker-password=admin'
             
             sh 'kubectl apply -f deployment.yaml'
